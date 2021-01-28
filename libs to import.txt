@@ -1,3 +1,0 @@
-à importer : bs4, appscript, urllib
-
-https://www.python.org/downloads/
