@@ -7,6 +7,7 @@ I used pyinstaller to develop an executable for windows and macOs, place the exe
  
 
 
+
 __How to use Script:__
 
 place "set_apod_wallpaper.py" "get_desktop_environment.py" and "set_wallpaper.py" in the same folder. Execute "set_apod_wallpaper.py" with python3.
