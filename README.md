@@ -3,7 +3,7 @@ A python script that retrieves the picture from the website https://apod.nasa.go
  
 __How to use App:__
 
-I used pyinstaller to develop an executable for windows and macOs, place the executable where you want, disable your antivirus, and execute. 
+I used pyinstaller to develop an executable for windows and macOs users that don't have python. Place the executable where you want, disable your antivirus, and execute. 
  
 
 
