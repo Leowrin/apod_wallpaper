@@ -1,3 +1,5 @@
+#from https://stackoverflow.com/a/21213504
+
 import get_desktop_environment as gde
 import os, sys
 
