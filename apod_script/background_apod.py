@@ -1,3 +1,5 @@
+#version 1.3 corrected directories for image save
+
 import urllib.request, os, sys
 from bs4 import BeautifulSoup
 import set_wallpaper as sw
@@ -17,7 +19,9 @@ if gde.get_desktop_environment(user)=='mac':
 
 
 url = 'https://apod.nasa.gov/apod/astropix.html'
-script_path = os.getcwd()   #recupere apod_script folder path
+
+scriptDirectory = os.path.dirname(os.path.realpath(__file__))
+
 
 try:
     content = urllib.request.urlopen(url, timeout=1).read()
@@ -26,7 +30,7 @@ try:
     else :
         soup = BeautifulSoup(content, features="lxml")
 except:
-    sw.set_wallpaper(user, script_path+'/alternative.jpg', True)
+    sw.set_wallpaper(user, scriptDirectory+'/alternative.jpg', True)
     exit()
 
 
@@ -34,11 +38,12 @@ for link in soup.find_all('a'):
     if link.get('href')[0:5]=="image":
         image_url = "https://apod.nasa.gov/apod/" + link.get('href')
 
-        with open(script_path+'/apod.jpg', 'wb') as f:
+        print(scriptDirectory+'/apod.jpg')
+        with open(scriptDirectory+'/apod.jpg', 'w+b') as f:
             f.write(urllib.request.urlopen(image_url).read())
         retrieved=True
 
 if retrieved==True:
-    sw.set_wallpaper(user, script_path+'/apod.jpg', True)
+    sw.set_wallpaper(user, scriptDirectory+'/apod.jpg', True)
 else :
-    sw.set_wallpaper(user, script_path+'/alternative.jpg', True)
+    sw.set_wallpaper(user, scriptDirectory+'/alternative.jpg', True)
