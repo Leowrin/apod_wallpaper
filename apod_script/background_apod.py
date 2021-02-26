@@ -38,7 +38,6 @@ for link in soup.find_all('a'):
     if link.get('href')[0:5]=="image":
         image_url = "https://apod.nasa.gov/apod/" + link.get('href')
 
-        print(scriptDirectory+'/apod.jpg')
         with open(scriptDirectory+'/apod.jpg', 'w+b') as f:
             f.write(urllib.request.urlopen(image_url).read())
         retrieved=True
