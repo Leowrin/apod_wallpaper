@@ -5,14 +5,13 @@ from bs4 import BeautifulSoup
 import set_wallpaper as sw
 import get_desktop_environment as gde
 #from gi.repository import Gio
-import getpass
 
 
 
-retrieved=False
-user= getpass.getuser()   #recupere user system
 
-if gde.get_desktop_environment(user)=='mac':
+retrieved=False   #recupere user system
+
+if gde.get_desktop_environment()=='mac':
     import ssl
 
     ssl._create_default_https_context = ssl._create_unverified_context
@@ -25,12 +24,12 @@ scriptDirectory = os.path.dirname(os.path.realpath(__file__))
 
 try:
     content = urllib.request.urlopen(url, timeout=1).read()
-    if gde.get_desktop_environment(user)=='mac' or 'windows':
+    if gde.get_desktop_environment()=='mac' or 'windows':
         soup = BeautifulSoup(content,features="html.parser")
     else :
         soup = BeautifulSoup(content, features="lxml")
 except:
-    sw.set_wallpaper(user, scriptDirectory+'/alternative.jpg', True)
+    sw.set_wallpaper(scriptDirectory+'/alternative.jpg', True)
     exit()
 
 
@@ -43,6 +42,6 @@ for link in soup.find_all('a'):
         retrieved=True
 
 if retrieved==True:
-    sw.set_wallpaper(user, scriptDirectory+'/apod.jpg', True)
+    sw.set_wallpaper(scriptDirectory+'/apod.jpg', True)
 else :
-    sw.set_wallpaper(user, scriptDirectory+'/alternative.jpg', True)
+    sw.set_wallpaper(scriptDirectory+'/alternative.jpg', True)

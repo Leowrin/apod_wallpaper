@@ -5,11 +5,11 @@ import os, sys
 
 
 
-def set_wallpaper(self,file_loc, first_run):
+def set_wallpaper(file_loc, first_run):
     # Note: There are two common Linux desktop environments where
     # I have not been able to set the desktop background from
     # command line: KDE, Enlightenment
-    desktop_env = gde.get_desktop_environment(self)
+    desktop_env = gde.get_desktop_environment()
 
     if desktop_env!="windows":
         from gi.repository import Gio
@@ -55,27 +55,7 @@ def set_wallpaper(self,file_loc, first_run):
                 subprocess.Popen(args2)
             args = ["xfdesktop","--reload"]
             subprocess.Popen(args)
-        elif desktop_env=="razor-qt": #TODO: implement reload of desktop when possible
-            if first_run:
-                desktop_conf = configparser.ConfigParser()
-                # Development version
-                desktop_conf_file = os.path.join(self.get_config_dir("razor"),"desktop.conf")
-                if os.path.isfile(desktop_conf_file):
-                    config_option = r"screens\1\desktops\1\wallpaper"
-                else:
-                    desktop_conf_file = os.path.join(self.get_home_dir(),".razor/desktop.conf")
-                    config_option = r"desktops\1\wallpaper"
-                desktop_conf.read(os.path.join(desktop_conf_file))
-                try:
-                    if desktop_conf.has_option("razor",config_option): #only replacing a value
-                        desktop_conf.set("razor",config_option,file_loc)
-                        with codecs.open(desktop_conf_file, "w", encoding="utf-8", errors="replace") as f:
-                            desktop_conf.write(f)
-                except:
-                    pass
-            else:
-                #TODO: reload desktop when possible
-                pass
+
         elif desktop_env in ["fluxbox","jwm","openbox","afterstep"]:
             #http://fluxbox-wiki.org/index.php/Howto_set_the_background
             # used fbsetbg on jwm too since I am too lazy to edit the XML configuration
@@ -135,21 +115,8 @@ def set_wallpaper(self,file_loc, first_run):
         sys.stderr.write("ERROR: Failed to set wallpaper. There might be a bug.\n")
         return False
 
-def get_config_dir(self, app_name="APP_NAME"):                                                                      #added " " appname @leowrin
-    if "XDG_CONFIG_HOME" in os.environ:
-        confighome = os.environ['XDG_CONFIG_HOME']
-    elif "APPDATA" in os.environ: # On Windows
-        confighome = os.environ['APPDATA']
-    else:
-        try:
-            from xdg import BaseDirectory
-            confighome =  BaseDirectory.xdg_config_home
-        except ImportError: # Most likely a Linux/Unix system anyway
-            confighome =  os.path.join(self.get_home_dir(),".config")
-    configdir = os.path.join(confighome,app_name)
-    return configdir
 
-def get_home_dir(self):
+def get_home_dir():
     if sys.platform == "cygwin":
         home_dir = os.getenv('HOME')
     else:
