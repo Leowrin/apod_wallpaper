@@ -2,8 +2,7 @@
 
 import urllib.request, os, sys
 from bs4 import BeautifulSoup
-import set_wallpaper as sw
-import get_desktop_environment as gde
+import set_wallpaper_windowslight as sw
 #from gi.repository import Gio
 
 
