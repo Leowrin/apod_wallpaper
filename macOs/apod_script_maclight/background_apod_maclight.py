@@ -6,8 +6,6 @@ import set_wallpaper as sw
 import get_desktop_environment as gde
 
 
-
-
 retrieved=False   #recupere user system
 
 #required on MacOS
