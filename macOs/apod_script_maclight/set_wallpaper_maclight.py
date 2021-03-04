@@ -1,8 +1,5 @@
 #from https://stackoverflow.com/a/21213504
-
 import os, sys
-
-
 
 def set_wallpaper(file_loc, first_run):
 

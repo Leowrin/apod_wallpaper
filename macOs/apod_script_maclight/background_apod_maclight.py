@@ -2,8 +2,7 @@
 
 import urllib.request, os, sys
 from bs4 import BeautifulSoup
-import set_wallpaper as sw
-import get_desktop_environment as gde
+import set_wallpaper_maclight as sw
 
 
 retrieved=False   #recupere user system
@@ -20,7 +19,6 @@ scriptDirectory = os.path.dirname(os.path.realpath(__file__))
 
 try:
     content = urllib.request.urlopen(url, timeout=1).read()
-
     soup = BeautifulSoup(content,features="html.parser")        #need feature html.parser on mac and windows
 
 except:
