@@ -8,6 +8,4 @@ urllib.request
 
 BeautifulSoup4
 
-getpass
-
 appscript
