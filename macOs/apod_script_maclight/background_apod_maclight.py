@@ -4,7 +4,6 @@ import urllib.request, os, sys
 from bs4 import BeautifulSoup
 import set_wallpaper as sw
 import get_desktop_environment as gde
-#from gi.repository import Gio
 
 
 
