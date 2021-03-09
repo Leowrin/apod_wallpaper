@@ -7,8 +7,6 @@ import get_desktop_environment as gde
 #from gi.repository import Gio
 
 
-
-
 retrieved=False   #recupere user system
 
 if gde.get_desktop_environment()=='mac':
