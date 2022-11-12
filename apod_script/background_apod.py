@@ -1,10 +1,26 @@
 #version 1.3 corrected directories for image save
 
-import urllib.request, os, sys
+import urllib.request, os, sys, datetime
 from bs4 import BeautifulSoup
 import set_wallpaper as sw
 import get_desktop_environment as gde
 #from gi.repository import Gio
+
+day = datetime.datetime.now().day
+
+scriptDirectory = os.path.dirname(os.path.realpath(__file__))
+
+
+with open(scriptDirectory+'/settings.txt', 'r') as f:
+    lastDay = f.readline()
+    if lastDay == str(day):
+        exit()
+    pass
+
+with open(scriptDirectory+'/settings.txt', 'w') as f:
+    f.write(str(day))
+    pass
+
 
 
 retrieved=False   #recupere user system
@@ -17,7 +33,7 @@ if gde.get_desktop_environment()=='mac':
 
 url = 'https://apod.nasa.gov/apod/astropix.html'
 
-scriptDirectory = os.path.dirname(os.path.realpath(__file__))
+
 
 
 try:
