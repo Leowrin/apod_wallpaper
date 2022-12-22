@@ -6,19 +6,19 @@ import set_wallpaper as sw
 import get_desktop_environment as gde
 #from gi.repository import Gio
 
-date = str(datetime.datetime.now().month) + "." + str(datetime.datetime.now().day)
+date = str(datetime.datetime.now().day) + "." + str(datetime.datetime.now().month)
 
 scriptDirectory = os.path.dirname(os.path.realpath(__file__))
 
 
 with open(scriptDirectory+'/settings.txt', 'r') as f:
-    lastDay = str(f.readline())
-    if lastDay == date
+    lastDay = f.readline()
+    if lastDay == date :
         exit()
     pass
 
 with open(scriptDirectory+'/settings.txt', 'w') as f:
-    f.write(str(date))
+    f.write(date)
     pass
 
 
