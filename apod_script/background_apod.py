@@ -12,7 +12,7 @@ scriptDirectory = os.path.dirname(os.path.realpath(__file__))
 
 
 with open(scriptDirectory+'/settings.txt', 'r') as f:
-    lastDay = f.readline()
+    lastDay = str(f.readline())
     if lastDay == date
         exit()
     pass
