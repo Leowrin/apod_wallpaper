@@ -23,7 +23,7 @@ def get_desktop_environment():
             elif "xfce" in desktop_session or desktop_session.startswith("xubuntu"):
                 return "xfce4"
             elif desktop_session.startswith("ubuntu"):
-                return "unity"
+                return "gnome"
             elif desktop_session.startswith("lubuntu"):
                 return "lxde"
             elif desktop_session.startswith("kubuntu"):

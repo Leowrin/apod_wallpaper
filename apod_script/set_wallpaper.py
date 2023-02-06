@@ -15,7 +15,7 @@ def set_wallpaper(file_loc, first_run):
         from gi.repository import Gio
 
     try:
-        if desktop_env in ["gnome", "unity", "cinnamon"]:
+        if desktop_env in ["unity", "cinnamon"]:
             uri = "file://%s" % file_loc
             try:
                 SCHEMA = "org."+desktop_env+".desktop.background"
@@ -25,15 +25,24 @@ def set_wallpaper(file_loc, first_run):
             except:
                 args = ["gsettings", "set", "org.gnome.desktop.background", "picture-uri", uri]
                 subprocess.Popen(args)
+
+        elif desktop_env=="gnome":
+            try:
+                file_loc = "file://" + file_loc
+                commandToDo = "gsettings set org.gnome.desktop.background picture-uri-dark " + file_loc
+                os.system(commandToDo)
+            except:
+                pass
+    
         elif desktop_env=="mate":
-            try: # MATE >= 1.6
-                # info from http://wiki.mate-desktop.org/docs:gsettings
-                args = ["gsettings", "set", "org.mate.background", "picture-filename", "'%s'" % file_loc]
-                subprocess.Popen(args)
-            except: # MATE < 1.6
-                # From https://bugs.launchpad.net/variety/+bug/1033918
-                args = ["mateconftool-2","-t","string","--set","/desktop/mate/background/picture_filename",'"%s"' %file_loc]
-                subprocess.Popen(args)
+                try: # MATE >= 1.6
+                    # info from http://wiki.mate-desktop.org/docs:gsettings
+                    args = ["gsettings", "set", "org.mate.background", "picture-filename", "'%s'" % file_loc]
+                    subprocess.Popen(args)
+                except: # MATE < 1.6
+                    # From https://bugs.launchpad.net/variety/+bug/1033918
+                    args = ["mateconftool-2","-t","string","--set","/desktop/mate/background/picture_filename",'"%s"' %file_loc]
+                    subprocess.Popen(args)
         elif desktop_env=="gnome2": # Not tested
             # From https://bugs.launchpad.net/variety/+bug/1033918
             args = ["gconftool-2","-t","string","--set","/desktop/gnome/background/picture_filename", '"%s"' %file_loc]
