@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 #version 1.3 corrected directories for image save
 
 import urllib.request, os, sys, datetime
